@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>词汇列表</title>
+
+<!-- Bootstrap core CSS -->
+<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+</head>
+
+<body role="document">
+
+	<div class="container theme-showcase" role="main">
+
+		<div class="page-header">
+			<h1>词汇信息列表</h1>
+		</div>
+
+		<div class="page-header" >
+			<h3>词汇表</h3>
+			<form class="form-inline" action="queryByCh" method="post">
+			  <div class="form-group">
+			    <label class="sr-only" for="id">ID</label>
+			    <input type="text" name="id" class="form-control" id="id" placeholder="ID" />
+			  </div>
+			  <div class="form-group">
+			    <label class="sr-only" for="chinese">中文词汇</label>
+			    <input type="text" name="chinese" class="form-control" id="chinese" placeholder="中文词汇" />
+			  </div>
+			  <div class="form-group">
+			    <label class="sr-only" for="english">英文词汇</label>
+			    <input type="text" name="english" class="form-control" id="english" placeholder="英文词汇" />
+			  </div>
+			  <button type="submit" class="btn btn-primary">搜索</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <a class="btn btn-success" href="create" role="button" target="_blank">新增词汇</a>
+			</form>
+		</div>
+
+		<div class="row">
+			<div class="col-md-9">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>中文词汇</th>
+							<th>英文词汇</th>
+							<th>系统id</th>
+							<th>租户id</th>
+							<th>应用渠道</th>
+							<th>备注</th>
+							<th>操作</th>
+							<th></th>
+						</tr>
+					</thead>
+					<!--<tbody th:remove="all-but-first"></tbody>-->
+					<tbody>
+						<tr th:each="CommonLanguage:${commonlanguages}">
+							<td th:text="${CommonLanguage.id}">1</td>
+							<td th:text="${CommonLanguage.chinese}">Mark</td>
+							<td th:text="${CommonLanguage.english}">12</td>
+							<td th:text="${CommonLanguage.sysid}">男</td>
+							<td th:text="${CommonLanguage.userid}">13056489658</td>
+							<td th:text="${CommonLanguage.remark}">2016-05-01 12:32:21</td>
+							<td th:text="${CommonLanguage.channel}">2016-05-01 12:32:21</td>
+							<td>
+								<div class="btn-group">
+								<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								操作<span class="caret"></span> 
+								</button>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{update(id=${CommonLanguage.id})}" target="_blank">修改</a></li>
+									<!--<li><a th:href="@{deleteUser(id=${user.id})}" onclick="return del_sure()">删除</a></li>-->
+								</ul>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+		function del_sure(){
+			var gnl=confirm("确定要删除?");
+			if (gnl==true){
+				return true;
+			}else{
+				return false;
+			}
+		}
+	</script>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

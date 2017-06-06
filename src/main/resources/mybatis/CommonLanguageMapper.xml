@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eking.mapper.CommonLanguageMapper">
+
+    <resultMap id="dictionary" type="com.eking.model.CommonLanguage">
+        <id column="id" property="id"/>
+        <result column="sysid" property="sysid"/>
+        <result column="userid" property="userid"/>
+        <result column="channel" property="channel"/>
+        <result column="remark" property="remark"/>
+        <result column="chinese" property="chinese"/>
+        <result column="english" property="english"/>
+    </resultMap>
+
+    <!--<select id="queryByCh" resultMap="dictionary" resultType="com.eking.model.CommonLanguage">-->
+    <select id="queryByCh" resultMap="dictionary" resultType="List" parameterType="com.eking.model.CommonLanguage">
+    SELECT *
+        FROM dictionary
+        WHERE 1 = 1
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="chinese!=null and chinese!=''">
+            and chinese=#{chinese}
+        </if>
+        <if test="english!=null and english!=''">
+            and english=#{english}
+        </if>
+    </select>
+    <insert id="createDic" parameterType="com.eking.model.CommonLanguage">
+        INSERT INTO dictionary(
+        sysid,userid,channel,remark,chinese,english
+        ) VALUES (
+        #{sysid},
+        #{userid},
+        #{channel},
+        #{remark},
+        #{chinese},
+        #{english}
+        )
+    </insert>
+    <select id="queryForList" resultMap="dictionary" resultType="com.eking.model.CommonLanguage">
+        SELECT *
+        FROM dictionary
+        WHERE id&lt;#{num};
+    </select>
+    <select id="queryForSort" resultMap="dictionary" resultType="com.eking.model.CommonLanguage">
+        SELECT *
+        FROM dictionary
+        where id&lt;#{num}
+        order by english asc;
+    </select>
+    <update id="updateDic" parameterType="com.eking.model.CommonLanguage">
+        update dictionary
+        <set >
+            <if test="sysid!=null">
+                sysid=#{sysid},
+            </if>
+            <if test="userid!=null">
+                userid=#{userid},
+            </if>
+            <if test="chinese!=null">
+                chinese=#{chinese},
+            </if>
+            <if test="english!=null">
+                english=#{english},
+            </if>
+            <if test="remark!=null">
+                remark=#{remark},
+            </if>
+            <if test="channel!=null">
+                channel=#{channel},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

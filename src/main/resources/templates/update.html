@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>修改词汇</title>
+
+<!-- Bootstrap core CSS -->
+<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet" />
+
+</head>
+
+<body role="document">
+
+	<div class="container theme-showcase" role="main">
+
+		<div class="page-header">
+			<h2>修改词汇</h2>
+			<form action="update" method="post">
+			  <!--<input type="hidden" name="id" th:value="${user.id}" 注释掉了/>-->
+				<input type="hidden" name="id" th:value="${commonLanguage.id}" />
+				<div class="form-group">
+			    <label class="sr-only" for="english">英文词汇</label>
+			    <input type="text" name="english" class="form-control" id="english"   placeholder="英文词汇"/>
+			  </div>
+			  <div class="form-group">
+			    <label class="sr-only" for="chinese">中文词汇</label>
+			    <input type="text" name="chinese" class="form-control" id="chinese" th:value="${commonLanguage.chinese}" />
+			  </div>
+			  <div class="form-group">
+			    <label class="sr-only" for="sysid">系统id</label>
+			    <input type="text" name="sysid" class="form-control" id="sysid" th:value="${commonLanguage.sysid}" />
+			  </div>
+			  <div class="form-group">
+			    <label class="sr-only" for="userid">用户id</label>
+			    <input type="password" name="userid" class="form-control" id="userid" th:value="${commonLanguage.userid}" />
+			  </div>
+				<div class="form-group">
+					<label class="sr-only" for="remark">备注</label>
+					<input type="password" name="remark" class="form-control" id="remark" th:value="${commonLanguage.remark}" />
+				</div>
+				<div class="form-group">
+					<label class="sr-only" for="channel">渠道</label>
+					<input type="password" name="channel" class="form-control" id="channel" th:value="${commonLanguage.channel}" />
+				</div>
+			  <!--<div class="form-group">-->
+				  <!--<label class="radio-inline">-->
+					  <!--<input type="radio" name="sex" id="inlineRadio1" value="男" th:checked="(${user.sex} == '男')? 'true' : 'false'" /> 男-->
+				  <!--</label>-->
+				  <!--<label class="radio-inline">-->
+					  <!--<input type="radio" name="sex" id="inlineRadio2" value="女" th:checked="(${user.sex} == '女')? 'true' : 'false'" /> 女-->
+				  <!--</label>-->
+			  <!--</div>-->
+			  <button type="submit" class="btn btn-success">修改词汇</button>
+			</form>
+		</div>
+
+	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>
